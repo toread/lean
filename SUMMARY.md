@@ -6,8 +6,9 @@
     * [用户指南]
       * [快速开始](/学习知识/RocketMQ/用户指南/快速开始.md)
       * [简单示例](/学习知识/RocketMQ/用户指南/简单示例.md)
-      * [顺序消息](/学习知识/RocketMQ/用户指南/顺序消息.md)
+      * [有序消息](/学习知识/RocketMQ/用户指南/有序消息.md)
       * [广播消息](/学习知识/RocketMQ/用户指南/广播消息.md)
+      * [批量消息](/学习知识/RocketMQ/用户指南/批量消息.md)
       * [过滤消息](/学习知识/RocketMQ/用户指南/过滤消息.md)
       * [日志输出插件](/学习知识/RocketMQ/用户指南/日志输出插件.md)
       * [开放式消息](/学习知识/RocketMQ/用户指南/开放式消息.md)
@@ -23,5 +24,6 @@
       * [命名服务](/学习知识/RocketMQ/最佳实践/命名服务.md)
       * [JVM内核配置](/学习知识/RocketMQ/最佳实践/JVM内核配置.md)
     * [源码分析]
-      * [Namesrc启动](/学习知识\RocketMQ/源码分析/Namesrv启动.md)
+      * [Namesrc](/学习知识\RocketMQ/源码分析/Namesrv.md)
+      * [Broker](/学习知识\RocketMQ/源码分析/Broker.md)
 
