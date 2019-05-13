@@ -1,0 +1,21 @@
+{
+    "title": "学习笔记",
+    "author": "黎志兵",
+    "language": "zh-hans",
+    "plugins": [
+        "-lunr",
+        "-search",
+        "search-pro",
+        "lightbox",
+        "livereload",
+        "mermaid",
+        "disqus",
+        "back-to-top-button",
+        "code"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "黎志兵的学习文档"
+        }
+    }
+}

@@ -16,7 +16,9 @@
 rocketMq 通过org.apache.rocketmq.namesrv.NamesrvStartup的mian方法传递参数后解析返回org.apache.rocketmq.namesrv.NamesrvControllerNamesrvController调用
 initialize做初始化,如果初始化不成功会调用org.apache.rocketmq.namesrv.NamesrvController#shutdown处理。主要关闭初始化流程中创建的资源,最后对JVM关闭增加钩子 NamesrvControllerNamesrvController.shutdown。如果初始化成功调用NamesrvController.start方法
 
->initialize 处理流程
+### start流程
+
+![avatar](/学习知识\图片\rocketmq\源码\NamesrvStartup.initialize.png)
 
 * org.apache.rocketmq.namesrv.kvconfig.KVConfigManager#load 初始化
 * 构建org.apache.rocketmq.remoting.netty.NettyRemotingServer
@@ -24,17 +26,16 @@ initialize做初始化,如果初始化不成功会调用org.apache.rocketmq.name
 * org.apache.rocketmq.namesrv.NamesrvController#registerProcessor 注册netty默认处理器
 * 定时扫描处理不活动的broker org.apache.rocketmq.namesrv.routeinfo.RouteInfoManager#scanNotActiveBroker
 * 定时打印org.apache.rocketmq.namesrv.kvconfig.KVConfigManager#configTable的值
-  
->shutdown 处理流程
+
+### shutdown 处理流程
+
+![avatar](/学习知识\图片\rocketmq\源码\NamesrvStartup.shutdown.png)
+
+主要对netty线程池EventLoopGroup及定时任务的资源进行关闭
 
 - remotingServer.shutdown
 - remotingExecutor.shutdown
 - scheduledExecutorService.shutdown
-
->start流程
-
-- org.apache.rocketmq.remoting.RemotingService#start启动 目前只**netty**的接受
-- org.apache.rocketmq.common.ServiceThread#start
 
 ## 注册中心对外提供的接口操作
 
@@ -42,6 +43,10 @@ initialize做初始化,如果初始化不成功会调用org.apache.rocketmq.name
 
 kv的配置通过类KVConfigManager实现的,URD的操作在操作的时候对局部对象进行加锁操作。操作完毕以后同步根据文件,写入文件的方式为Json
 
->broker的操作:REGISTER_BROKER,UNREGISTER_BROKER,GET_BROKER_CLUSTER_INFO,WIPE_WRITE_PERM_OF_BROKER,UPDATE_NAMESRV_CONFIG,GET_NAMESRV_CONFIG
+>broker的操作:
 
->topic的操作:GET_ROUTEINTO_BY_TOPIC,GET_ALL_TOPIC_LIST_FROM_NAMESERVER,DELETE_TOPIC_IN_NAMESRV,GET_TOPICS_BY_CLUSTER,GET_SYSTEM_TOPIC_LIST_FROM_NS,GET_UNIT_TOPIC_LIST,GET_HAS_UNIT_SUB_TOPIC_LIST,GET_HAS_UNIT_SUB_UNUNIT_TOPIC_LIST
+REGISTER_BROKER,UNREGISTER_BROKER,GET_BROKER_CLUSTER_INFO,WIPE_WRITE_PERM_OF_BROKER,UPDATE_NAMESRV_CONFIG,GET_NAMESRV_CONFIG
+
+>topic的操作
+
+GET_ROUTEINTO_BY_TOPIC,GET_ALL_TOPIC_LIST_FROM_NAMESERVER,DELETE_TOPIC_IN_NAMESRV,GET_TOPICS_BY_CLUSTER,GET_SYSTEM_TOPIC_LIST_FROM_NS,GET_UNIT_TOPIC_LIST,GET_HAS_UNIT_SUB_TOPIC_LIST,GET_HAS_UNIT_SUB_UNUNIT_TOPIC_LIST

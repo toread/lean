@@ -1,9 +1,9 @@
 # 学习心得
 
 * [学习心得](README.md)
-  * [DUBBO]
-  * [RocketMQ]
-    * [用户指南]
+  * DUBBO
+  * RocketMQ
+    * 用户指南
       * [快速开始](/学习知识/RocketMQ/用户指南/快速开始.md)
       * [简单示例](/学习知识/RocketMQ/用户指南/简单示例.md)
       * [有序消息](/学习知识/RocketMQ/用户指南/有序消息.md)
@@ -13,17 +13,21 @@
       * [日志输出插件](/学习知识/RocketMQ/用户指南/日志输出插件.md)
       * [开放式消息](/学习知识/RocketMQ/用户指南/开放式消息.md)
       * [事物型消息](/学习知识/RocketMQ/用户指南/事物型消息.md)
-    * [部署及运维]
+    * 部署及运维
       * [架构](/学习知识/RocketMQ/部署及运维/架构.md)
       * [部署](/学习知识/RocketMQ/部署及运维/部署.md)
       * [管理工具](/学习知识/RocketMQ/部署及运维/管理工具.md)
-    * [最佳实践]
+    * 最佳实践
       * [核心概念](/学习知识/RocketMQ/最佳实践/核心概念.md)
       * [生产者](/学习知识/RocketMQ/最佳实践/生产者.md)
       * [消费者](/学习知识/RocketMQ/最佳实践/消费者.md)
       * [命名服务](/学习知识/RocketMQ/最佳实践/命名服务.md)
       * [JVM内核配置](/学习知识/RocketMQ/最佳实践/JVM内核配置.md)
-    * [源码分析]
-      * [Namesrc](/学习知识\RocketMQ/源码分析/Namesrv.md)
-      * [Broker](/学习知识\RocketMQ/源码分析/Broker.md)
-
+    * 源码分析
+      * [Namesrc](/学习知识/RocketMQ/源码分析/Namesrv.md)
+      * [Broker](/学习知识/RocketMQ/源码分析/Broker.md)
+      * [通信协议](/学习知识/RocketMQ/源码分析/通信协议.md)
+      * [存储流程及数据结构](/学习知识/RocketMQ/源码分析/存储流程及数据结构.md)
+      * [生产者](/学习知识/RocketMQ/源码分析/生产者.md)
+      * [消费者](/学习知识/RocketMQ/源码分析/生产者.md)
+      * [数据结构](/学习知识/RocketMQ/源码分析/数据结构.md)

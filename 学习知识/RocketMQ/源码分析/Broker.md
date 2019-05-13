@@ -12,9 +12,53 @@
 1. Broker序列化消息是顺序写，序列化文件保存在userHome/store/commitlog目录下，文件名为总偏移量。
 1. 默认为异步刷盘、提交日志单个文件1个G、单个consumer队列文件为不到6M
 
-## broker启动流程
+## broker initialize 方法
 
-broker启动过程中通过 指令  -c 读取配置文件,初始化BrokerConfig,NettyServerConfig,NettyClientConfig,MessageStoreConfig的配置
-创建BrokerController,在创建BrokerController的过程中出事化ConsumerManager,ConsumerOffsetManager
+![avatar](/学习知识\图片\rocketmq\源码\BrokerStartup.createBrokerController.png)
 
+> 配置文件读取
 
+通过命令读取配置文件或则配置参数的信息解析成BrokerConfig,NettyServerConfig,NettyClientConfig,MessageStoreConfig
+
+>org.apache.rocketmq.broker.BrokerController#initialize 初始化
+
+资源初始化
+
+* topicConfigManager.load();
+* consumerOffsetManager.load();
+* subscriptionGroupManager.load();
+* consumerFilterManager.load();
+* messageStore.load();
+* remotingServer 加载
+
+registerProcessor:注册Netty的处理器
+
+* SendMessageProcessor
+* PullMessageProcessor
+* QueryMessageProcessor
+* ClientManageProcessor
+* ConsumerManageProcessor
+* EndTransactionProcessor
+* AdminBrokerProcessor
+
+定时处理器相关的
+打印一天消息处理情况
+定时刷新consumerOffsetManager,consumerFilterManager文件序列化
+定时检查org.apache.rocketmq.common.stats.MomentStatsItem#value大于速度临界值来禁用慢的consumer来保护Broker
+定时打印核心线程的队列长度及队列头的堆积时间
+定时打印获取已存储在提交日志中但尚未分配给使用队列的字节数
+从服务同步
+this.syncTopicConfig();
+this.syncConsumerOffset();
+this.syncDelayOffset();
+this.syncSubscriptionGroupConfig();
+主服务打印从服务消息存储落后的长度
+
+开启事物服务org.apache.rocketmq.broker.transaction.TransactionalMessageService
+两阶段提交服务
+
+## broker shutdown 方法
+
+![avatar](/学习知识\图片\rocketmq\源码\BrokerShutdown.png)
+
+主要对brokerStatsManager,clientHousekeepingService,pullRequestHoldService,remotingServer,fastRemotingServer,fileWatchService,messageStore,sendMessageExecutor,pullMessageExecutor,adminBrokerExecutor,brokerOuterAPI,consumerOffsetManager,filterServerManager,brokerFastFailure,consumerFilterManagerm,clientManageExecutor,queryMessageExecutor,consumerManageExecutor,fileWatchService 线程池,网络协议,内部服务资源的关闭。
