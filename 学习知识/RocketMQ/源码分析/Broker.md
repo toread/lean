@@ -14,7 +14,7 @@
 
 ## broker initialize 方法
 
-![avatar](/学习知识\图片\rocketmq\源码\BrokerStartup.createBrokerController.png)
+![avatar](/学习知识/图片/rocketmq/源码/BrokerStartup.createBrokerController.png)
 
 > 配置文件读取
 
@@ -59,6 +59,6 @@ this.syncSubscriptionGroupConfig();
 
 ## broker shutdown 方法
 
-![avatar](/学习知识\图片\rocketmq\源码\BrokerShutdown.png)
+![avatar](/学习知识/图片/rocketmq/源码/BrokerShutdown.png)
 
 主要对brokerStatsManager,clientHousekeepingService,pullRequestHoldService,remotingServer,fastRemotingServer,fileWatchService,messageStore,sendMessageExecutor,pullMessageExecutor,adminBrokerExecutor,brokerOuterAPI,consumerOffsetManager,filterServerManager,brokerFastFailure,consumerFilterManagerm,clientManageExecutor,queryMessageExecutor,consumerManageExecutor,fileWatchService 线程池,网络协议,内部服务资源的关闭。

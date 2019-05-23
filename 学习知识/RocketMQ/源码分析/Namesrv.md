@@ -18,7 +18,7 @@ initialize做初始化,如果初始化不成功会调用org.apache.rocketmq.name
 
 ### start流程
 
-![avatar](/学习知识\图片\rocketmq\源码\NamesrvStartup.initialize.png)
+![avatar](/学习知识/图片/rocketmq/源码/NamesrvStartup.initialize.png)
 
 * org.apache.rocketmq.namesrv.kvconfig.KVConfigManager#load 初始化
 * 构建org.apache.rocketmq.remoting.netty.NettyRemotingServer
@@ -29,7 +29,7 @@ initialize做初始化,如果初始化不成功会调用org.apache.rocketmq.name
 
 ### shutdown 处理流程
 
-![avatar](/学习知识\图片\rocketmq\源码\NamesrvStartup.shutdown.png)
+![avatar](/学习知识/图片/rocketmq/源码/NamesrvStartup.shutdown.png)
 
 主要对netty线程池EventLoopGroup及定时任务的资源进行关闭
 
